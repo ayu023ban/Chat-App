@@ -25,16 +25,30 @@ function test_input($test_data){
 		}
 
 		if($is_correct_values){
-			$password = sha1($password);
-			$sql = "select * from ayush_user where username = '{$username}' and password = '{$password}'";
+			//$password = sha1($password);
+			$sql = "select * from ayush_user where username = '{$username}' limit 1";
 			$result_login = $conn->query($sql);
 			if($result_login->num_rows > 0){
 				$row = $result_login->fetch_assoc();
-				$_SESSION['id'] = $row["id"];
-				echo "you have successfully loged in";
+				if(password_verify($password,$row['password'])){
+					$_SESSION['id'] = $row["id"];
+					echo "you have successfully loged in";
+					if($remember_me){
+						$cookie_id = rand();
+						$cookie_id_hash = password_hash($cookie_id , PASSWORD_DEFAULT);
+						setcookie("id",$cookie_id,time()+30*24*60*60);
+						$sql = "insert into ayush_session (session_id , cookie_id) values ( '{$row['id']}' , '$cookie_id_hash' )";
+						if($conn->query($sql)===true){
+							echo "remembered successfully";
+						}
+					}
+				}
+				else{
+					$error_button ="Your password is incorrect";
+				}
 			}
 			else{
-				$error_button = "Your email or password is incorrect";
+				$error_button = "Your username doesnot exists";
 				
 			}
 		}
@@ -43,5 +57,32 @@ function test_input($test_data){
 		}
 	}
 
+echo isloggedin($conn);
+function isloggedin($conn){
+	if(isset($_SESSION['id'])){
+		$sql = "select * from ayush_user where id = '{$_SESSION['id']}' limit 1 ";
+		$result_query = $conn->query($sql);
+		if($result_query->num_rows > 0){
+			return true;
+		}
+		else {
+			return false;
+		}
+}
+else if(isset($_COOKIE['id'])){
+	$cookie_id_hash = password_hash($_COOKIE['id'],PASSWORD_DEFAULT);
+	$sql = "select * from ayush_session where cookie_id = '{$cookie_id_hash}' ";
+	$result_query = $conn->query($sql);
+	if($result_query->num_rows>0){
+		$row = $result_query->fetch_assoc();
+		$_SESSION['id']=$row['session_id'];
+		setcookie("id", $_COOKIE['id'],time()+30*24*60*60);
+		return true;
+	}
+}
+else {
+	return false;
+}
+	}
 
 ?>

@@ -55,7 +55,7 @@ if (isset($_POST['create'])) {
 
 
     if (isset($_POST['password'])) {
-        $password = sha1(trim($_POST['password']));
+        $password = password_hash(trim($_POST['password']),PASSWORD_DEFAULT);
     } else {
         $error_password = "password field cannot be empty";
         $is_correct_values = false;
