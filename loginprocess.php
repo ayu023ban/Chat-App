@@ -1,5 +1,10 @@
 <?php include('connect.php');
+include('helperfunction.php');
 session_start();
+
+echo $_SESSION['msg'];
+unset($_SESSION['msg']);
+
 $username = test_input($_POST['username']);
 $password = test_input($_POST['password']);
 $remember_me = isset($_POST['remember_me']);
@@ -7,12 +12,7 @@ $error_username_login = "";
 $error_password_login = "";
 $error_button = "";
 $is_correct_values = true;
-function test_input($test_data){
-	$data = trim($test_data);
-  	$data = stripslashes($test_data);
- 	$data = htmlspecialchars($test_data);
-  	return $test_data;
-}
+
 
 	if(isset($_POST['login'])){
 		if(!isset($username)){
@@ -37,11 +37,16 @@ function test_input($test_data){
 						$cookie_id = rand();
 						$cookie_id_hash = password_hash($cookie_id , PASSWORD_DEFAULT);
 						setcookie("id",$cookie_id,time()+30*24*60*60);
-						$sql = "insert into ayush_session (session_id , cookie_id) values ( '{$row['id']}' , '$cookie_id_hash' )";
+						$sql = "insert into ayush_session (session_id , cookie_id) values ( {$row['id']} , '$cookie_id_hash' )";
+						
 						if($conn->query($sql)===true){
 							echo "remembered successfully";
 						}
+						else {
+							echo "Error: " . $sql . "<br>" . $conn->error;
+						}
 					}
+					header("location: profile.php");
 				}
 				else{
 					$error_button ="Your password is incorrect";
@@ -57,32 +62,7 @@ function test_input($test_data){
 		}
 	}
 
-echo isloggedin($conn);
-function isloggedin($conn){
-	if(isset($_SESSION['id'])){
-		$sql = "select * from ayush_user where id = '{$_SESSION['id']}' limit 1 ";
-		$result_query = $conn->query($sql);
-		if($result_query->num_rows > 0){
-			return true;
-		}
-		else {
-			return false;
-		}
-}
-else if(isset($_COOKIE['id'])){
-	$cookie_id_hash = password_hash($_COOKIE['id'],PASSWORD_DEFAULT);
-	$sql = "select * from ayush_session where cookie_id = '{$cookie_id_hash}' ";
-	$result_query = $conn->query($sql);
-	if($result_query->num_rows>0){
-		$row = $result_query->fetch_assoc();
-		$_SESSION['id']=$row['session_id'];
-		setcookie("id", $_COOKIE['id'],time()+30*24*60*60);
-		return true;
-	}
-}
-else {
-	return false;
-}
-	}
+
+
 
 ?>

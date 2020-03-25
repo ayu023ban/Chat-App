@@ -11,7 +11,7 @@
     <div class="wrapper">
         <div class="loginform">
 	<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-
+		
                 <label for="username"><b>username</b></label>
                 <input type="test" name="username" required  id="username"><span> <?php if ($error_username_login !== "") {
                                                                                         echo $error_username_login;

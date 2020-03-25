@@ -1,4 +1,4 @@
-<?php include(profileprocess.php) ?>
+<?php include('profileprocess.php') ?>
 
 <html>
 <head>
@@ -9,6 +9,8 @@
 <div class= "wrapper">
 <div class= "profileform">
 <form method = "post" action = " <?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?> " enctype = "multipart/form-data" >
+<label for = "username"> Username </label>
+		<input type = "text" name= "username" value = "<?php echo $username ?>" readonly><br>
 <label for= "image">Select profile picture to upload: </label>
 <input type = "file" name = "image" id = "image" required ><?php if ($error_image !== "") {
                                                                                         echo $error_image;
@@ -25,7 +27,7 @@
                                                                                     } ?> </span><br>
 
 <label for = "qualification">Qualification:</label><?php if ($error_qualification !== "") {
-                                                                                        echo $error_error_qualification;
+                                                                                        echo $_error_qualification;
                                                                                     } ?> </span><br>
 
 <input type = "radio" name= "qualificartion" value = "master"> Masters <br>

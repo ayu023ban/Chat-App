@@ -1,9 +1,13 @@
 <?php
 include('connect.php');
-if (isset($_SESSION[''])) {
+include('helperfunction.php');
+session_start();
+echo $_SESSION['msg'];
+unset($_SESSION['msg']);
+if (isloggedin($conn)) {
+	$_SESSION['msg'] = "you already have logged_in";
     header('location: profile.php');
 }
-session_start();
 $username = $_POST['username'];
 $email = $_POST['email'];
 $phone = $_POST['phone'];
