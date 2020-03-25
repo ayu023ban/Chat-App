@@ -10,10 +10,10 @@
 <body>
     <div class="wrapper">
         <div class="loginform">
-	<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-		
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+
                 <label for="username"><b>username</b></label>
-                <input type="test" name="username" required  id="username"><span> <?php if ($error_username_login !== "") {
+                <input type="test" name="username" required id="username"><span> <?php if ($error_username_login !== "") {
                                                                                         echo $error_username_login;
                                                                                     } ?> </span><br>
 
@@ -21,9 +21,9 @@
                 <input class="form-control" type="password" name="password" required><?php if ($error_password_login != "") {
                                                                                             echo $error_password_login;
                                                                                         } ?><br>
-		<input type= "checkbox" name = "remember_me" id = "remember_me"  >
-		<label for="remember_me">remember me </label>
-			
+                <input type="checkbox" name="remember_me" id="remember_me">
+                <label for="remember_me">remember me </label>
+
 
 
                 <div id="floatleft">

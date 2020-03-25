@@ -2,6 +2,7 @@
 include('helperfunction.php');
 session_start();
 if(!isloggedin($conn)){
+	$_SESSION['msg'] = "you are not logged in.";
 	header('location: login.php');
 }
 echo $_SESSION['msg'];
@@ -26,7 +27,7 @@ $sql = " select * from ayush_profile where user_id = {$_SESSION['id']} limit 1 "
 $result_query = $conn->query($sql);
 if($result_query->num_rows >0){
 	$_SESSION['msg']="you have alreaded made your profile";
-	header("location: login.php");
+	header("location: index.php");
 }
 
 
@@ -82,7 +83,8 @@ if (isset($_POST['profile_submit'])) {
 		$sql = "insert into ayush_profile ( user_id, image , name,city,qualification) values ({$_SESSION['id']}, '{$image_new_name}' , '{$name}' , '{$city}' , '{$qualification}' ) ";
 		if($conn->query($sql) ===TRUE){
                       
-                        echo "New record created successfully";
+			$_SESSION['msg']= "New record created successfully";
+			header('location: index.php');
                 }
                 else {
             		echo "Error: " . $sql . "<br>" . $conn->error;

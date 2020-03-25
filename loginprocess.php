@@ -1,7 +1,10 @@
 <?php include('connect.php');
 include('helperfunction.php');
 session_start();
-
+if(isloggedin($conn)){
+	$_SESSION['msg']="you have already logged in";
+	header("location: profile.php");
+}
 echo $_SESSION['msg'];
 unset($_SESSION['msg']);
 
