@@ -18,28 +18,28 @@
             <form action="" method="post">
 
                 <div class="form-group">
-                    <input class="form-control" placeholder="Username" id="username" type="text" name="username" required><span><?php if ($error_username != "") {
-                                                                                                                                    echo "<span class = 'alert alert-danger'>" . $error_username;
-                                                                                                                                } ?></span><br>
+                    <input class="form-control" placeholder="Username" id="username" type="text" name="username" required><?php if ($error_username != "") {
+                                                                                                                                    echo "<div class = 'alert alert-danger'>" . $error_username."</div>";
+                                                                                                                                } ?>
                 </div>
                 <div class="form-group">
-                    <input class="form-control" placeholder="Email" id="email" type="email" name="email" required><span><?php if ($error_email != "") {
-                                                                                                                            echo $error_email;
-                                                                                                                        } ?></span><br>
+                    <input class="form-control" placeholder="Email" id="email" type="email" name="email" required><?php if ($error_email != "") {
+                                                                                                                            echo "<div class='alert alert-danger'> ". $error_email . "</div>" ;
+                                                                                                                        } ?>
                 </div>
                 <div class="form-group">
-                    <input class="form-control" placeholder="Password" id="password" type="password" name="password" required><span><?php if ($error_password != "") {
-                                                                                                                                        echo $error_password;
-                                                                                                                                    } ?></span><br>
+                    <input class="form-control" placeholder="Password" id="password" type="password" name="password" required><?php if ($error_password != "") {
+                                                                                                                            echo "<div class='alert alert-danger'> ". $error_password . "</div>" ;
+                                                                                                                        } ?>
                 </div>
                 <div class="form-group">
-                    <input placeholder="Phonenumber" class="form-control" id="phone" type="number" name="phone" required><span><?php if ($error_phone != "") {
-                                                                                                                                    echo $error_phone;
-                                                                                                                                } ?></span><br>
+                    <input placeholder="Phonenumber" class="form-control" id="phone" type="number" name="phone" required><?php if ($error_phone != "") {
+                                                                                                                            echo "<div class='alert alert-danger'> ". $error_phone . "</div>" ;
+                                                                                                                        } ?>
                 </div>
                 <div class="form-group">
                     <!-- <div class="custom-control custom-radio"> -->
-                    <input class="custom-control-unit" type="radio" name="gender" id="customRadio1" value="male">
+                    <input class="custom-control-unit" type="radio" checked name="gender" id="customRadio1" value="male">
                     <label for="customRadio1">Male</label>
                     <!-- </div> -->
                     <!-- <div class="custom-control custom-radio"> -->
@@ -58,7 +58,7 @@
         </div>
     </div>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
+    <script src="./js/signup.js"></script>                                                                                                                        
 </body>
 
 </html>
