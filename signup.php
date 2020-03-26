@@ -5,47 +5,60 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Signup</title>
 </head>
 
 <body>
     <div class="wrapper">
-        <div class="signupform">
+        <div class="container" style="max-width:600px; margin-top:150px">
             <h1>Sign-up form </h1>
             <form action="" method="post">
 
-                <label for="email"><b>User name</b></label>
-                <input id="username" type="text" name="username" required><span><?php if ($error_username != "") {
-                                                                                    echo $error_username;
-                                                                                } ?></span><br>
-
-                <label for="email"><b>Email Address</b></label>
-                <input id="email" type="email" name="email" required><span><?php if ($error_email != "") {
-                                                                                echo $error_email;
-                                                                            } ?></span><br>
-
-                <label for="password"><b>Password</b></label>
-                <input id="password" type="password" name="password" required><span><?php if ($error_password != "") {
-                                                                                        echo $error_password;
-                                                                                    } ?></span><br>
-
-                <label for="phone"><b>phone number</b></label>
-                <input id="phone" type="number" name="phone" required><span><?php if ($error_phone != "") {
-                                                                                            echo $error_phone;
-                                                                                        } ?></span><br>
-
-                <label for="gender"><b> gender </b></label>
-                <input type="radio" name="gender" id="male" value="male">
-                <label for="male">Male</label><br>
-                <input type="radio" name="gender" id="female" value="female">
-                <label for="female">Female</label><br>
-                <input type="radio" name="gender" id="other" value="other">
-		<label for="other">other</label><br>
-		<input class="table-button" id="register signup" type="submit" name="create" value="Sign Up">
-                <a href="login.php" id="login"  class="table-button">Already registered? Login</a>
+                <div class="form-group">
+                    <input class="form-control" placeholder="Username" id="username" type="text" name="username" required><span><?php if ($error_username != "") {
+                                                                                                                                    echo "<span class = 'alert alert-danger'>" . $error_username;
+                                                                                                                                } ?></span><br>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" placeholder="Email" id="email" type="email" name="email" required><span><?php if ($error_email != "") {
+                                                                                                                            echo $error_email;
+                                                                                                                        } ?></span><br>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" placeholder="Password" id="password" type="password" name="password" required><span><?php if ($error_password != "") {
+                                                                                                                                        echo $error_password;
+                                                                                                                                    } ?></span><br>
+                </div>
+                <div class="form-group">
+                    <input placeholder="Phonenumber" class="form-control" id="phone" type="number" name="phone" required><span><?php if ($error_phone != "") {
+                                                                                                                                    echo $error_phone;
+                                                                                                                                } ?></span><br>
+                </div>
+                <div class="form-group">
+                    <!-- <div class="custom-control custom-radio"> -->
+                    <input class="custom-control-unit" type="radio" name="gender" id="customRadio1" value="male">
+                    <label for="customRadio1">Male</label>
+                    <!-- </div> -->
+                    <!-- <div class="custom-control custom-radio"> -->
+                    <input class="custom-control-unit" type="radio" name="gender" id="female" value="female">
+                    <label for="female">Female</label>
+                    <!-- </div>-->
+                    <!-- <div class="custom-control custom-radio">  -->
+                    <input class="custom-control-unit" type="radio" name="gender" id="other" value="other">
+                    <label for="other">other</label>
+                    <!-- </div> -->
+                </div>
+                <input class="btn btn-outline-primary" type="submit" name="create" value="Sign Up">
+                <a href="login.php" id="login" class="btn float-right btn-outline-success"> Login</a>
+                <span class="float-right pt-2">Already registered?</span>
             </form>
         </div>
     </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

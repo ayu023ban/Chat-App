@@ -1,43 +1,92 @@
 <?php include('profileprocess.php') ?>
 
 <html>
+
 <head>
-<title>profile</title>
+    <title>profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
+
 <body>
 
-<div class= "wrapper">
-<div class= "profileform">
-<form method = "post" action = " <?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?> " enctype = "multipart/form-data" >
-<label for = "username"> Username </label>
-		<input type = "text" name= "username" value = "<?php echo $username ?>" readonly><br>
-<label for= "image">Select profile picture to upload: </label>
-<input type = "file" name = "image" id = "image" required ><?php if ($error_image !== "") {
-                                                                                        echo $error_image;
-                                                                                    } ?> </span><br>
+    <div class="wrapper">
+        <div class="container" style="max-width:600px; margin-top:200px">
+            <h1 class="text-center">Profile </h1>
+            <form method="post" action=" <?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?> " enctype="multipart/form-data">
 
-<label for ="name"> Name: </label>
-<input type = "text" name = "name" id = "name" required><?php if ($error_name !== "") {
-                                                                                        echo $error_name;
-                                                                                    } ?> </span><br>
 
-<label for="city">City:</label>
-<input type = "text" id = "city" name = "city" required><?php if ($error_city !== "") {
-                                                                                        echo $error_city;
-                                                                                    } ?> </span><br>
 
-<label for = "qualification">Qualification:</label><?php if ($error_qualification !== "") {
-                                                                                        echo $_error_qualification;
-                                                                                    } ?> </span><br>
 
-<input type = "radio" name= "qualificartion" value = "master"> Masters <br>
-<input type ="radio" name = "qualification" value = "bachelor"> Bachelors <br>
-<input type ="radio" name = "qualification" value = "seniosec"> Senior Secondary <br>
-<input type ="radio" name = "qualification" value = "sec" checked > Secondary <br>
-<input type = "submit" name = "profile_submit"  value = "submit" >
-</form>
-</div>
-</div>
+                <div class="input-group flex-nowrap">
+                    <div class="input-group-prepend">
+                        <span class="btn btn-outline-secondary">Username</span>
+                    </div>
+                    <input type="text" name="username" class="form-control" value="<?php echo $username ?>" readonly><br>
+                </div>
 
+
+
+
+                <div class="input-group mb-3 mt-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                    </div>
+                    <div class="custom-file">
+                        <label class="custom-file-label" for="image">Choose Image </label>
+                        <input type="file" class="custom-file-input" name="image" id="image" required>
+                    </div>
+                </div>
+
+                <?php if ($error_image !== "") {
+                    echo $error_image;
+                } ?> </span><br>
+
+
+                <div class="form-group">
+                    <input class="form-control" placeholder="Name" type="text" name="name" id="name" required>
+                </div>
+
+                <?php if ($error_name !== "") {
+                    echo $error_name;
+                } ?>
+
+
+                <div class="form-group">
+                    <input class="form-control" placeholder="City" type="text" id="city" name="city" required>
+                </div>
+                <?php if ($error_city !== "") {
+                    echo $error_city;
+                } ?> </span><br>
+
+                <!-- <label for="qualification">Qualification:</label> </span><br>
+
+                <input type="radio" name="qualificartion" value="master"> Masters <br>
+                <input type="radio" name="qualification" value="bachelor"> Bachelors <br>
+                <input type="radio" name="qualification" value="seniosec"> Senior Secondary <br>
+                <input type="radio" name="qualification" value="sec" checked> Secondary <br> -->
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Qualification</label>
+                    </div>
+                    <select name="qualification" class="custom-select" id="inputGroupSelect01">
+                        <option value="master" selected>Masters</option>
+                        <option value="bachelor">Bachelors</option>
+                        <option value="seniosec">Senior Secondary</option>
+                        <option value="sec">Secondary</option>
+                    </select>
+                </div>
+                <?php if ($error_qualification !== "") {
+                    echo $_error_qualification;
+                } ?>
+
+                <input type="submit" name="profile_submit" value="submit">
+            </form>
+        </div>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
+
 </html>
