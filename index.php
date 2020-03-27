@@ -74,7 +74,7 @@ $userinfom = $result_query->fetch_assoc();
 						$imagesql = "select image from ayush_profile where user_id = {$row['id']}";
 						$image_result_query = $conn->query($imagesql);
 						$image_row = $image_result_query->fetch_assoc();
-						?>
+				?>
 						<span class=""><img src="<?php echo $image_row['image'] ?>" width="40" height="40" class="rounded-circle " alt="" srcset=""></span>
 						<?php echo "<span class='user-name'>" . $row['username'] . "</span>";
 						?>
@@ -111,7 +111,7 @@ $userinfom = $result_query->fetch_assoc();
 				</nav>
 				<?php
 				$sql = "select * from ayush_chat where (sender_id = {$_SESSION['id']} && receiver_id = {$_SESSION['secondperson']} ) || ( receiver_id = {$_SESSION['id']} && sender_id = {$_SESSION['secondperson']} ) order by sent_at  ";
-
+				echo "<div id='messagecontainer' >";
 				$result_query = $conn->query($sql);
 				if ($result_query->num_rows > 0) {
 					while ($row = $result_query->fetch_assoc()) {
@@ -126,11 +126,13 @@ $userinfom = $result_query->fetch_assoc();
 				} else {
 					echo "no chat found<br>";
 				}
-
+				echo "</div>";
 
 
 				if (isset($_POST['messagesend'])) {
-					$sql = "insert into ayush_chat (sender_id , receiver_id , message) values ( {$_SESSION['id']} , {$_SESSION['secondperson']} , '{$_POST['message']}'  )";
+
+					$message = test_input($_POST['message']);
+					$sql = "insert into ayush_chat (sender_id , receiver_id , message) values ( {$_SESSION['id']} , {$_SESSION['secondperson']} , '{$message}'  )";
 					if ($conn->query($sql) === true) {
 					} else {
 						echo "Error: " . $sql . "<br>" . $conn->error;
@@ -142,13 +144,14 @@ $userinfom = $result_query->fetch_assoc();
 				?>
 				<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 					<div class="input-group mb-3">
-						<input class="form-control" name="message" type="text" placeholder="message" aria-describedby="button-addon2">
+						<input class="form-control" name="message" type="text" placeholder="message" aria-describedby="buttonaddon2">
 						<div class="input-group-append">
-							<input type="submit" class="btn btn-primary" name="messagesend" id="button-addon2" value="Send">
+							<input type="submit" class="btn btn-primary" name="messagesend" id="buttonaddon2" value="Send">
 						</div>
 					</div>
 
 				</form>
+
 
 			<?php
 				echo "</div>";
@@ -161,6 +164,57 @@ $userinfom = $result_query->fetch_assoc();
 
 
 	</div>
+	<script>
+		let chat_box = document.getElementById("chat-box");
+		let userid = <?php echo $_SESSION['id'] ?>;
+		let secondid = <?php echo $_SESSION['secondperson'] ?>;
+		userdiv = document.getElementsByClassName("user");
+
+		function chat_downloader() {
+			if (chat_box != null) {
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						let olddiv = document.getElementById("messagecontainer")
+						let newdiv = document.createElement("div")
+						let navbar = chat_box.getElementsByTagName("nav")[0]
+						newdiv.setAttribute("id", "messagecontainer")
+						let chat_array = JSON.parse(this.responseText)
+						chat_array.forEach(element => {
+							let msgdiv = document.createElement("div")
+							msgdiv.classList.add("message", "mb-3")
+							if (element[1] == secondid) {
+								msgdiv.classList.add("secondperson", "pl-3")
+							} else {
+								msgdiv.classList.add("firstperson", "text-right", "pr-3")
+							}
+							msgdiv.innerHTML = element[3];
+							newdiv.append(msgdiv)
+						});
+						olddiv.remove();
+						navbar.after(newdiv)
+					}
+				};
+				xhttp.open("GET", "chat.php?userid=" + <?php echo $_SESSION['id'] ?> + "&secondid=" + <?php echo $_SESSION['secondperson'] ?>, true);
+				xhttp.send();
+			}
+		}
+
+		setInterval(chat_downloader, 500);
+
+		let messagesendbutton = document.querySelector("#buttonaddon2");
+		messagesendbutton.addEventListener("click", (e) => {
+			e.preventDefault();
+			let messageinput = document.getElementsByName("message")[0]
+			message = messageinput.value;
+			let xml = new XMLHttpRequest();
+			xml.open("POST","index.php",true)
+			xml.setRequestHeader("Content-type","application/x-www-form-urlencoded")
+			xml.send("message="+message+"&messagesend=mango");
+			messageinput.value = ""
+			chat_downloader();
+		})
+	</script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 

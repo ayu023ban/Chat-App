@@ -1,8 +1,8 @@
 <?php function test_input($test_data)
 {
-        $data = trim($test_data);
-        $data = stripslashes($test_data);
-        $data = htmlspecialchars($test_data);
+        $test_data = trim($test_data);
+        $test_data = stripslashes($test_data);
+        $test_data = htmlspecialchars($test_data);
         return $test_data;
 }
 
