@@ -5,11 +5,11 @@ if(isloggedin($conn)){
 	$_SESSION['msg']="you have already logged in";
 	header("location: profile.php");
 }
-echo $_SESSION['msg'];
+if(isset($_SESSION['msg']))echo $_SESSION['msg'];
 unset($_SESSION['msg']);
-
-$username = test_input($_POST['username']);
-$password = test_input($_POST['password']);
+$username = $password = "";
+if(isset($_POST['username']))$username = test_input($_POST['username']);
+if(isset($_POST['username']))$password = test_input($_POST['password']);
 $remember_me = isset($_POST['remember_me']);
 $error_username_login = "";
 $error_password_login = "";
