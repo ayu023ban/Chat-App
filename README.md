@@ -42,9 +42,13 @@ This is a complete **_chat app_** with great [bootstrap](https://getbootstrap.co
 
 ## Development 
 
-To set up this App locally, clone this repo to your desktop and install php on your local machine. Then in terminal go to the cloned repo and run 
+To set up this App locally, clone this repo to your desktop and install php on your local machine. Then in terminal go to the cloned repo and run
+
 ```
-$ mysql -u [username] -p > imgphpassignment.sql
+$ mysql -u [username] -p
+> CREATE DATABASE chatapp;
+> exit;
+$ mysql -u [username] -p chatapp < chatapp.sql
 ```
 Now run the project in any server like apache2 or php default server.For example to run the project through php default server run the following code.
 ```
