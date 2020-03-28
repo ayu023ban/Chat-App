@@ -1,4 +1,4 @@
-# Chatter
+# Chat-App
 
 A plane php project to show the as a part of my assignment.
 
