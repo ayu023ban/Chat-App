@@ -17,16 +17,17 @@ $userinfom = $result_query->fetch_assoc();
 
 <head>
 	<title>home</title>
+	<link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<link rel="stylesheet" href="./css/indexstyle.css">
+	<link rel="stylesheet" href="./assets/css/indexstyle.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
 <body>
 
 	<nav class="navbar navbar-light bg-light mb-4">
-		<a class="navbar-brand" href="index.php"><img width="40" height="40" src="./assets/images/logo.jpg" alt=""> Chat Box</a>
+		<a class="navbar-brand" href="index.php"><img width="40" height="40" src="./assets/images/logo.png" alt=""> Chat Box</a>
 		<?php
 		$sql = "select image from ayush_profile where user_id = {$_SESSION['id']}";
 		$result_query = $conn->query($sql);
@@ -99,7 +100,6 @@ $userinfom = $result_query->fetch_assoc();
 			if (isset($_SESSION['secondperson'])) {
 				echo "<div id='chat-box' class='col-md-6 '>";
 			?>
-				<!-- <h2 class="text-center "><?php echo $_SESSION['secondpersonusername'] ?></h2> -->
 				<nav style="justify-content: space-around" class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
 					<?php
 					$sql = "select image from ayush_profile where user_id = {$_SESSION['secondperson']}";

@@ -29,7 +29,6 @@ $is_correct_values = true;
 		}
 
 		if($is_correct_values){
-			//$password = sha1($password);
 			$sql = "select * from ayush_user where username = '{$username}' limit 1";
 			$result_login = $conn->query($sql);
 			if($result_login->num_rows > 0){

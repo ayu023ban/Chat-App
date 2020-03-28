@@ -2,6 +2,7 @@
 ?>
 <html lang="en">
 <head>
+<link rel="shortcut icon" type="image/ico" href="/assets/images/favicon.ico"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -12,7 +13,7 @@
 <body>
     <div class="wrapper">
         <div class="container text-center" style="max-width: 600px">
-            <h1 class="text-center">Login</h1>
+            <h1 class="text-center mt-4 mb-4">Login</h1>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <div class="form-group">
                     <input type="test" class="form-control" name="username" placeholder="Username" required id="username">
@@ -26,13 +27,13 @@
                 <?php if ($error_password_login != "") {
                     echo "<div class='alert alert-danger'>" . $error_password_login . "</div>";
                 } ?>
-                <div class="custom-control custom-checkbox">
+                <div class="custom-control mb-4 custom-checkbox">
                     <input type="checkbox" name="remember_me" class="custom-control-input" id="customCheck1">
                     <label class="custom-control-label" for="customCheck1">remember me </label>
                 </div>
 
 
-                <div id="float-left">
+                <div id="float-left mt-4">
                     <input id="login" class="btn btn-lg btn-outline-primary" type="submit" name="login" value="Log in">
                     <a href="signup.php" id="signup" class="btn btn-lg btn-outline-success">Want To Sign Up?</a>
                 </div>
