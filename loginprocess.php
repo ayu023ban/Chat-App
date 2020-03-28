@@ -18,12 +18,13 @@ $is_correct_values = true;
 
 
 	if(isset($_POST['login'])){
-		if(!isset($username)){
+		if($username===""){
 			$error_username_login = "username cannot be empty";
 			$is_correct_values = false;
 		}
-		else if(!isset($password)){
-			$error_user_login = "password cannot be empty";
+		else if($password===""){
+	
+			$error_password_login = "password cannot be empty";
 			$is_correct_values = false;
 		}
 
@@ -35,7 +36,7 @@ $is_correct_values = true;
 				$row = $result_login->fetch_assoc();
 				if(password_verify($password,$row['password'])){
 					$_SESSION['id'] = $row["id"];
-					echo "you have successfully loged in";
+					echo "you have successfully logged in";
 					if($remember_me){
 						$cookie_id = rand();
 						$cookie_id_hash = password_hash($cookie_id , PASSWORD_DEFAULT);
@@ -43,10 +44,11 @@ $is_correct_values = true;
 						$sql = "insert into ayush_session (session_id , cookie_id) values ( {$row['id']} , '$cookie_id_hash' )";
 						
 						if($conn->query($sql)===true){
-							echo "remembered successfully";
+							echo "<div class='alert alert-success'>remembered successfully</div>";
 						}
 						else {
-							echo "Error: " . $sql . "<br>" . $conn->error;
+							echo "<div class='alert alert-danger>Error: " . $sql . "<br>" . $conn->error."</div>";
+							die();
 						}
 					}
 					header("location: profile.php");

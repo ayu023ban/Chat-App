@@ -67,3 +67,42 @@ const checkcorrectemail = ()=>{
     xml.send()
 }
 emailinput.addEventListener("keyup",checkcorrectemail)
+
+
+// ------------- for phone number ------------------------------
+
+let phoneinput = document.getElementById("phone")
+let errorphonediv = document.createElement("div")
+errorphonediv.classList.add("alert", "alert-danger")
+errorphonediv.innerHTML = "incorrect phonenumber format"
+
+const checkcorrectphone =()=>{
+    phone = phoneinput.value
+    var reg = /^(91|\+91|0)?[ ]?[9876][0-9]{9}$/g
+    if(!reg.test(phone)&&phone!=""){
+        inputdiv[3].after(errorphonediv)
+    }
+    else{
+        errorphonediv.remove();
+    }
+}
+
+phoneinput.addEventListener("keyup",checkcorrectphone)
+
+//------------------for password -----------------------------------
+
+let passwordinput = document.getElementById("password")
+let errorpassworddiv = document.createElement("div")
+errorpassworddiv.classList.add("alert","alert-danger")
+errorpassworddiv.innerHTML="Password must be atleast 8 digits long"
+const checkcorrectpassword = ()=>{
+    password = passwordinput.value
+    reg = /^.{8,}$/
+    if(!reg.test(password)&&password!=""){
+        inputdiv[2].after(errorpassworddiv)
+    }
+    else{
+        errorpassworddiv.remove();
+    }
+}
+passwordinput.addEventListener("keyup",checkcorrectpassword)

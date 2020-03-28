@@ -80,7 +80,7 @@ if($is_correct_values){
 	$sql = " update ayush_profile set image = '{$image_new_name}' , name = '{$name}' , city = '$city' , qualification = '{$qualification}' where user_id = {$_SESSION['id']} ";
 	if($conn->query($sql) ===TRUE){
 				  
-		$_SESSION['msg']= "New record created successfully";
+		$_SESSION['msg']= "New Profile created successfully";
 		header('location: index.php');
 			}
 			else {

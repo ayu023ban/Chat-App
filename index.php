@@ -81,7 +81,9 @@ $userinfom = $result_query->fetch_assoc();
 						<form class="float-right m-0 p-0" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 							<input name="secondperson" type="hidden" value="<?php echo $row['id'] ?>">
 							<input name="secondpersonusername" type="hidden" value="<?php echo $row['username'] ?>">
-							<button class="btn btn-outline-secondary float-right" name="messageopen" type="submit">message</button>
+							<button class="btn btn-outline-secondary float-right" name="messageopen" type="submit">
+								<?php if($row['id']===$_SESSION['id'])echo "draft";
+								else echo "message"; ?></button>
 						</form>
 				<?php
 						echo "</div><br>";

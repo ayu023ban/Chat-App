@@ -1,7 +1,6 @@
 <?php include('loginprocess.php')
 ?>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,15 +15,17 @@
             <h1 class="text-center">Login</h1>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <div class="form-group">
-                    <input type="test" class="form-control" name="username" placeholder="Username" required id="username"> <?php if ($error_username_login !== "") {
-                                                                                                                                echo "<div class='alert alert-danger'>" . $error_username_login . "</div>";
-                                                                                                                            } ?> </span><br>
+                    <input type="test" class="form-control" name="username" placeholder="Username" required id="username">
                 </div>
+                <?php if ($error_username_login !== "") {
+                    echo "<div class='alert alert-danger'>" . $error_username_login . "</div>";
+                } ?>
                 <div class="form-group">
-                    <input class="form-control" type="password" name="password" placeholder="Password" required><?php if ($error_password_login != "") {
-                                                                                                                    echo "<span class='alert alert-danger'>" . $error_password_login . "</span>";
-                                                                                                                } ?><br>
+                    <input class="form-control" type="password" name="password" placeholder="Password" required>
                 </div>
+                <?php if ($error_password_login != "") {
+                    echo "<div class='alert alert-danger'>" . $error_password_login . "</div>";
+                } ?>
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" name="remember_me" class="custom-control-input" id="customCheck1">
                     <label class="custom-control-label" for="customCheck1">remember me </label>

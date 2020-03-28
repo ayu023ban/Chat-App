@@ -23,7 +23,7 @@ $is_correct_values = true;
 if (isset($_POST['create'])) {
 
 
-    if (isset($_POST['email'])) {
+    if ($email!="") {
         if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
             $result = $conn->query("SELECT email from ayush_user where email='$email'");
             $rows = $result->num_rows;
@@ -43,7 +43,8 @@ if (isset($_POST['create'])) {
     }
 
 
-    if(isset($username)){
+    if($username!=""){
+        echo $username."mango";
 	    $result = $conn->query("select username from ayush_user where username = '$username'");
 	    $rows = $result->num_rows;
 	    if($rows>0){
@@ -60,7 +61,7 @@ if (isset($_POST['create'])) {
 
 
 
-    if (isset($_POST['password'])) {
+    if ($password!="") {
         $password = password_hash(trim($_POST['password']),PASSWORD_DEFAULT);
     } else {
         $error_password = "password field cannot be empty";
@@ -79,3 +80,4 @@ if (isset($_POST['create'])) {
         }
 }
 }
+?>

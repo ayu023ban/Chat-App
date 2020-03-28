@@ -79,7 +79,7 @@
                 </div>
 
                 <?php if ($error_image !== "") {
-                    echo $error_image;
+                    echo"<div class-'alert alert-danger'>". $error_image."</div>";
                 } ?> </span><br>
 
 
@@ -88,7 +88,7 @@
                 </div>
 
                 <?php if ($error_name !== "") {
-                    echo $error_name;
+                    echo "<div class = 'alert alert-danger'>". $error_name. "</div";
                 } ?>
 
 

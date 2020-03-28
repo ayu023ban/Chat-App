@@ -40,8 +40,8 @@
                 </div>
 
                 <?php if ($error_image !== "") {
-                    echo $error_image;
-                } ?> </span><br>
+                    echo "<div class='alert alert-danger'>" . $error_image . "</div>";
+                } ?>
 
 
                 <div class="form-group">
@@ -49,7 +49,7 @@
                 </div>
 
                 <?php if ($error_name !== "") {
-                    echo $error_name;
+                    echo "<div class='alert alert-danger'>" . $error_name . "</div>";
                 } ?>
 
 
@@ -57,16 +57,8 @@
                     <input class="form-control" placeholder="City" type="text" id="city" name="city" required>
                 </div>
                 <?php if ($error_city !== "") {
-                    echo $error_city;
-                } ?> </span><br>
-
-                <!-- <label for="qualification">Qualification:</label> </span><br>
-
-                <input type="radio" name="qualificartion" value="master"> Masters <br>
-                <input type="radio" name="qualification" value="bachelor"> Bachelors <br>
-                <input type="radio" name="qualification" value="seniosec"> Senior Secondary <br>
-                <input type="radio" name="qualification" value="sec" checked> Secondary <br> -->
-
+                    echo "<div class='alert alert-danger'>" . $error_city . "</div>";
+                } ?> 
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">Qualification</label>
@@ -79,7 +71,7 @@
                     </select>
                 </div>
                 <?php if ($error_qualification !== "") {
-                    echo $_error_qualification;
+                    echo "<div class='alert alert-danger'>" . $error_qualification . "</div>";
                 } ?>
 
                 <input type="submit" name="profile_submit" value="submit">
